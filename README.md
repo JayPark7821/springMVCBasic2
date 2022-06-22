@@ -15,3 +15,13 @@
 >
 > * 로그 출력 레벨을 info로 설정하면 아무일도 발생하지 않는다. 따라서 앞과 같은 의미없는 연산이
 발생하지 않는다
+
+* ### 둘다 허용
+  * 매핑 : /hello-basic
+  * url 요청 : /hello-basic , /hello-basic/ 
+  * 둘다 스프링이 알아서 매핑해준다.
+
+> RequestMapping 에 method 속성으로 HTTP 메서드를 지정하지 않으면 HTTP 메서드와 무관하게
+호출된다.
+>
+> 모두 허용 GET, HEAD, POST, PUT, PATCH, DELETE
