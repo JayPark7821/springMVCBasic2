@@ -35,7 +35,7 @@ public class MappingContrioller {
      *
      * @PathVariable("userId") String userId -> @PathVariable userId
      */
-    @GetMapping("/mapping/{userId")
+    @GetMapping("/mapping/{userId}")
     public String mappingPath(@PathVariable("userId") String data) { //-> @PathVariable String userId    @PathVariable 의 이름과 파라미터 이름이 같으면 생략할 수 있다
         log.info("mappingPath userId={}", data);
         return "ok";
