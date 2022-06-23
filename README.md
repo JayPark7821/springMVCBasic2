@@ -25,3 +25,29 @@
 호출된다.
 >
 > 모두 허용 GET, HEAD, POST, PUT, PATCH, DELETE
+>
+
+
+* ### @RequestParam.required
+  * 파라미터 필수 여부
+  * 기본값이 파라미터 필수( true )이다.
+* ### /request-param 요청
+  * username 이 없으므로 400 예외가 발생한다.
+  
+* ### 주의! - 파라미터 이름만 사용
+  * /request-param?username=
+  * 파라미터 이름만 있고 값이 없는 경우 빈문자로 통과
+  
+* ### 주의! - 기본형(primitive)에 null 입력
+  * /request-param 요청
+  * @RequestParam(required = false) int age
+  * null 을 int 에 입력하는 것은 불가능(500 예외 발생)
+  * 따라서 null 을 받을 수 있는 Integer 로 변경하거나, 또는 다음에 나오는 defaultValue 사용
+
+* @RequestParam Map ,
+  * Map(key=value)
+* @RequestParam MultiValueMap
+  * MultiValueMap(key=[value1, value2, ...] ex) (key=userIds, value=[id1, id2])
+
+
+  * 파라미터의 값이 1개가 확실하다면 Map 을 사용해도 되지만, 그렇지 않다면 MultiValueMap 을 사용하자.
