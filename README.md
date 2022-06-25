@@ -50,4 +50,31 @@
   * MultiValueMap(key=[value1, value2, ...] ex) (key=userIds, value=[id1, id2])
 
 
-  * 파라미터의 값이 1개가 확실하다면 Map 을 사용해도 되지만, 그렇지 않다면 MultiValueMap 을 사용하자.
+  * 파라미터의 값이 1개가 확실하다면 Map 을 사용해도 되지만, 그렇지 않다면 MultiValueMap 을 사용하자. 
+
+> HttpEntity , @RequestBody를 사용하면 HTTP메시지 컨버터가  HTTP메시지 바디의 내용을 우리가 원하는 문자나 객체등으로 변환해줌.
+
+
+```java
+/**
+* @RequestBody 생략 불가능(@ModelAttribute 가 적용되어 버림)
+* HttpMessageConverter 사용 -> MappingJackson2HttpMessageConverter (contenttype: application/json)
+*
+*/
+@ResponseBody
+@PostMapping("/request-body-json-v3")
+public String requestBodyJsonV3(@RequestBody HelloData data) {
+  log.info("username={}, age={}", data.getUsername(), data.getAge());
+  return "ok";
+}
+```
+
+
+* ### 스프링은 @ModelAttribute , @RequestParam 과 같은 해당 애노테이션을 생략시 다음과 같은 규칙을 적용한다.
+  * String , int , Integer 같은 단순 타입 = @RequestParam
+  * 나머지 = @ModelAttribute (argument resolver 로 지정해둔 타입 외
+
+> * 주의
+> 
+> HTTP 요청시에 content-type이 application/json인지 꼭! 확인해야 한다. 그래야 JSON을 처리할 수
+있는 HTTP 메시지 컨버터가 실행된다
